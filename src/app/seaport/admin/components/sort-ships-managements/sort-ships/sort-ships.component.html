@@ -1,0 +1,69 @@
+<div class="col-12 grid-margin stretch-card">
+  <div class="card">
+    <div class="card-body">
+      <form [formGroup]="sortsForm" (ngSubmit)="postSort($event, sortsForm)">
+        <div class="form-group">
+          <mat-form-field class="example-full-width">
+            <mat-label>Tên tàu</mat-label>
+            <mat-select formControlName="shipId">
+              <mat-option *ngFor="let temp of ships" [value]="temp.id">{{temp.shipName}}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="
+            sortsForm.get('shipId')?.invalid &&
+            (sortsForm.get('shipId')?.dirty ||
+            sortsForm.get('shipId')?.touched)
+          ">
+              <div class="control">
+                <div *ngIf="sortsForm.get('shipId')?.errors?.['required']">
+                  Vui lòng chọn <span>*</span>
+                </div>
+              </div>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="form-group">
+          <mat-form-field class="example-full-width">
+            <mat-label>Tên bến</mat-label>
+            <mat-select formControlName="berthId">
+              <mat-option *ngFor="let temp of berths" [value]="temp.id">{{temp.berthName}}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="
+            sortsForm.get('berthId')?.invalid &&
+            (sortsForm.get('berthId')?.dirty ||
+            sortsForm.get('berthId')?.touched)
+          ">
+              <div class="control">
+                <div *ngIf="sortsForm.get('berthId')?.errors?.['required']">
+                  Vui lòng chọn <span>*</span>
+                </div>
+              </div>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="form-group">
+          <mat-form-field class="example-full-width">
+            <mat-label>Vị trí trong bến</mat-label>
+            <input matInput type="number" formControlName="locationBerth">
+            <mat-error *ngIf="
+            sortsForm.get('locationBerth')?.invalid &&
+            (sortsForm.get('locationBerth')?.dirty ||
+            sortsForm.get('locationBerth')?.touched)
+          ">
+              <div class="control">
+                <div *ngIf="sortsForm.get('locationBerth')?.errors?.['required']">
+                  Vui lòng số vị trí <span>*</span>
+                </div>
+              </div>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="form-group" style="margin: 25px;">
+          <button type="submit" class="btn btn-primary mr-2">Cập nhật thông tin</button>
+          <button class="btn btn-dark">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

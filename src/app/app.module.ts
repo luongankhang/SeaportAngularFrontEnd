@@ -3,6 +3,10 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AdminModule } from './seaport/admin/admin.module';
+import { NgChartsModule } from 'ng2-charts';
+import { AuthModule } from './seaport/auth/auth.module';
 
 @NgModule({
   declarations: [
@@ -10,7 +14,11 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    AdminModule,
+    AuthModule,
+    NgChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

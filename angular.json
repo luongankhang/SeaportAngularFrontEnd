@@ -15,6 +15,18 @@
       "prefix": "app",
       "architect": {
         "build": {
+          "resolve": {
+            "fallback": {
+              "stream": "require.resolve('stream-browserify')",
+              "path": "require.resolve('path-browserify')",
+              "crypto": "require.resolve('crypto-browserify')",
+              "url": "require.resolve('url/')",
+              "http": "require.resolve('stream-http')",
+              "https": "require.resolve('https-browserify')",
+              "zlib": "require.resolve('browserify-zlib')",
+              "util": "require.resolve('util/')"
+            }
+          },
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "outputPath": "dist/seaport-web-app",
@@ -30,7 +42,9 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "@angular/material/prebuilt-themes/indigo-pink.css",
+              "src/styles.scss",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
             "scripts": []
           },
@@ -93,6 +107,7 @@
               "src/assets"
             ],
             "styles": [
+              "@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss"
             ],
             "scripts": []
@@ -100,5 +115,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "18140e88-8101-4770-8e05-8f592229a013"
   }
 }

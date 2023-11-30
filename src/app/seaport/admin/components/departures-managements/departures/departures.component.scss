@@ -1,0 +1,45 @@
+.col-12.grid-margin.stretch-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+
+  .card {
+    width: 800px; // Điều chỉnh độ rộng của thẻ card nếu cần thiết
+    padding: 20px;
+
+    .card-title {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .card-description {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .example-form {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-column-gap: 20px;
+
+      .form-group {
+        margin-bottom: 25px; // Khoảng cách 20px giữa các control
+      }
+
+      .example-full-width {
+        width: 100%;
+      }
+
+      .control {
+        font-size: 14px;
+        color: red;
+        margin-top: 5px;
+      }
+    }
+
+    .btn {
+      margin-right: 10px;
+    }
+  }
+}

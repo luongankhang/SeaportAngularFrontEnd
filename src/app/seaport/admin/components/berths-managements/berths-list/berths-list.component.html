@@ -1,0 +1,131 @@
+<div class="card radius-10">
+  <div class="card-body">
+    <div class="d-flex align-items-center">
+      <div>
+        <h6 class="mb-0">Recent Orders</h6>
+      </div>
+      <input type="text" [(ngModel)]="searchText" (keyup.enter)="search()" placeholder="Search">
+      <div class="dropdown ms-auto">
+        <a class="dropdown-toggle dropdown-toggle-nocaret" href="#" data-bs-toggle="dropdown"><i
+            class='bx bx-dots-horizontal-rounded font-22 text-option'></i>
+        </a>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="javascript:;">Action</a>
+          </li>
+          <li><a class="dropdown-item" href="javascript:;">Another action</a>
+          </li>
+          <li>
+            <hr class="dropdown-divider">
+          </li>
+          <li><a class="dropdown-item" href="javascript:;">Something else here</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="table-responsive">
+      <table class="table align-middle mb-0">
+        <thead class="table-light">
+          <tr>
+            <th>Tên bến</th>
+            <th>Số vị trí bến</th>
+            <th>Tình trạng bến</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let temp of berths | slice: (currentPage - 1) * itemsPerPage : (currentPage - 1) * itemsPerPage + itemsPerPage">
+            <td>{{temp.berthName}}</td>
+            <td>{{temp.berthCapacity}}</td>
+            <td>{{temp.berthStatus}}</td>
+            <input type="submit" value="Sửa" (click)="edit(temp)">
+            <input type="submit" value="Xóa" (click)="getId(temp)">
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="pagination">
+  <ul>
+    <li *ngFor="let page of getPageNumbers()" [class.active]="page === currentPage">
+      <input type="submit" (click)="onPageChange(page)" [value]="page">
+    </li>
+  </ul>
+</div>
+
+<div *ngIf="isHide">
+  <div class="col-12 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <form class="example-form" [formGroup]="berthsForm" (ngSubmit)="update($event)">
+          <div class="form-group">
+            <mat-form-field class="example-full-width">
+              <mat-label>Tên bến</mat-label>
+              <input matInput type="text" formControlName="berthName">
+              <mat-error *ngIf="
+              berthsForm.get('berthName')?.invalid &&
+                    (berthsForm.get('berthName')?.dirty ||
+                    berthsForm.get('berthName')?.touched)
+                  ">
+                <div class="control">
+                  <div *ngIf="berthsForm.get('berthName')?.errors?.['required']">
+                    Vui lòng nhập Tên bến <span>*</span>
+                  </div>
+                  <div *ngIf="berthsForm.get('berthName')?.errors?.['minlength']">
+                    Tên bến trên 1 ký tự <span>*</span>
+                  </div>
+                  <div *ngIf="berthsForm.get('berthName')?.errors?.['maxlength']">
+                    Tên bến dưới 255 ký tự <span>*</span>
+                  </div>
+                </div>
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="form-group">
+            <mat-form-field class="example-full-width">
+              <mat-label>Số vị trí</mat-label>
+              <input matInput type="text" formControlName="berthCapacity">
+              <mat-error *ngIf="
+              berthsForm.get('berthCapacity')?.invalid &&
+                    (berthsForm.get('berthCapacity')?.dirty ||
+                    berthsForm.get('berthCapacity')?.touched)
+                  ">
+                <div class="control">
+                  <div *ngIf="berthsForm.get('berthCapacity')?.errors?.['required']">
+                    Vui lòng nhập Số vị trí<span>*</span>
+                  </div>
+                </div>
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="form-group">
+            <mat-form-field class="example-full-width">
+              <mat-label>Tình trạng bến</mat-label>
+              <mat-select formControlName="berthStatus">
+                <mat-option value="Tốt">Tốt</mat-option>
+                <mat-option value="Xuống cấp">Xuống cấp</mat-option>
+              </mat-select>
+              <mat-error *ngIf="
+              berthsForm.get('berthStatus')?.invalid &&
+              (berthsForm.get('berthStatus')?.dirty ||
+              berthsForm.get('berthStatus')?.touched)
+            ">
+                <div class="control">
+                  <div *ngIf="berthsForm.get('berthStatus')?.errors?.['required']">
+                    Vui lòng chọn <span>*</span>
+                  </div>
+                </div>
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="form-group" style="margin: 25px;">
+            <button type="submit" class="btn btn-primary mr-2">Cập nhật thông tin</button>
+            <button class="btn btn-dark">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

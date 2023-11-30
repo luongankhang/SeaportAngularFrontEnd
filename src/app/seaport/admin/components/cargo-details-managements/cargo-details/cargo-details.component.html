@@ -1,0 +1,194 @@
+<div class="col-12 grid-margin stretch-card d-flex justify-content-center align-items-center">
+  <div class="card">
+    <div class="card-body">
+      <form class="example-form" [formGroup]="cargoDetailsForm" (ngSubmit)="postCargoDetail($event, cargoDetailsForm)">
+
+        <div class="form-group">
+          <mat-form-field class="example-full-width">
+            <mat-label>Kiểm tra</mat-label>
+            <mat-select formControlName="cargoId">
+              <mat-option *ngFor="let temp of cargos" [value]="temp.id">{{temp.cargoDesc}}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="
+            cargoDetailsForm.get('cargoId')?.invalid &&
+            (cargoDetailsForm.get('cargoId')?.dirty ||
+            cargoDetailsForm.get('cargoId')?.touched)
+          ">
+              <div class="control">
+                <div *ngIf="cargoDetailsForm.get('cargoId')?.errors?.['required']">
+                  Vui lòng chọn <span>*</span>
+                </div>
+              </div>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="form-group">
+          <mat-form-field class="example-full-width">
+            <mat-label>Loại hàng</mat-label>
+            <input matInput type="text" formControlName="cargoType">
+            <mat-error *ngIf="
+            cargoDetailsForm.get('cargoType')?.invalid &&
+                  (cargoDetailsForm.get('cargoType')?.dirty ||
+                  cargoDetailsForm.get('cargoType')?.touched)
+                ">
+              <div class="control">
+                <div *ngIf="cargoDetailsForm.get('cargoType')?.errors?.['required']">
+                  Vui lòng nhập Loại hàng <span>*</span>
+                </div>
+                <div *ngIf="cargoDetailsForm.get('cargoType')?.errors?.['minlength']">
+                  Loại hàng trên 1 ký tự <span>*</span>
+                </div>
+                <div *ngIf="cargoDetailsForm.get('cargoType')?.errors?.['maxlength']">
+                  Loại hàng dưới 255 ký tự <span>*</span>
+                </div>
+              </div>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="form-group">
+          <mat-form-field class="example-full-width">
+            <mat-label>Số lượng hàng hóa</mat-label>
+            <input matInput type="number" formControlName="cargoQuantity">
+            <mat-error *ngIf="
+            cargoDetailsForm.get('cargoQuantity')?.invalid &&
+                  (cargoDetailsForm.get('cargoQuantity')?.dirty ||
+                  cargoDetailsForm.get('cargoQuantity')?.touched)
+                ">
+              <div class="control">
+                <div *ngIf="cargoDetailsForm.get('cargoQuantity')?.errors?.['required']">
+                  Vui lòng nhập Số lượng hàng hóa <span>*</span>
+                </div>
+              </div>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="form-group">
+          <mat-form-field class="example-full-width">
+            <mat-label>Địa điểm khởi hành</mat-label>
+            <input matInput type="text" formControlName="cargoStart">
+            <mat-error *ngIf="
+            cargoDetailsForm.get('cargoStart')?.invalid &&
+                  (cargoDetailsForm.get('cargoStart')?.dirty ||
+                  cargoDetailsForm.get('cargoStart')?.touched)
+                ">
+              <div class="control">
+                <div *ngIf="cargoDetailsForm.get('cargoStart')?.errors?.['required']">
+                  Vui lòng nhập Địa điểm khởi hành <span>*</span>
+                </div>
+                <div *ngIf="cargoDetailsForm.get('cargoStart')?.errors?.['minlength']">
+                  Địa điểm khởi hành trên 1 ký tự <span>*</span>
+                </div>
+                <div *ngIf="cargoDetailsForm.get('cargoStart')?.errors?.['maxlength']">
+                  Địa điểm khởi hành dưới 255 ký tự <span>*</span>
+                </div>
+              </div>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="form-group">
+          <mat-form-field class="example-full-width">
+            <mat-label>Địa điểm đến</mat-label>
+            <input matInput type="text" formControlName="cargoEnd">
+            <mat-error *ngIf="
+            cargoDetailsForm.get('cargoEnd')?.invalid &&
+                  (cargoDetailsForm.get('cargoEnd')?.dirty ||
+                  cargoDetailsForm.get('cargoEnd')?.touched)
+                ">
+              <div class="control">
+                <div *ngIf="cargoDetailsForm.get('cargoEnd')?.errors?.['required']">
+                  Vui lòng nhập Địa điểm đến <span>*</span>
+                </div>
+                <div *ngIf="cargoDetailsForm.get('cargoEnd')?.errors?.['minlength']">
+                  Địa điểm đến trên 1 ký tự <span>*</span>
+                </div>
+                <div *ngIf="cargoDetailsForm.get('cargoEnd')?.errors?.['maxlength']">
+                  Địa điểm đến dưới 255 ký tự <span>*</span>
+                </div>
+              </div>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="form-group">
+          <mat-form-field class="example-full-width">
+            <mat-label>Ngày bắt đầu</mat-label>
+            <input matInput type="date" formControlName="cargoStartDate">
+            <mat-error *ngIf="
+            cargoDetailsForm.get('cargoStartDate')?.invalid &&
+                  (cargoDetailsForm.get('cargoStartDate')?.dirty ||
+                  cargoDetailsForm.get('cargoStartDate')?.touched)
+                ">
+              <div class="control">
+                <div *ngIf="cargoDetailsForm.get('cargoStartDate')?.errors?.['required']">
+                  Vui lòng chọn <span>*</span>
+                </div>
+              </div>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="form-group">
+          <mat-form-field class="example-full-width">
+            <mat-label>Giờ bắt đầu</mat-label>
+            <input matInput type="time" formControlName="cargoStartTime">
+            <mat-error *ngIf="
+            cargoDetailsForm.get('cargoStartTime')?.invalid &&
+                  (cargoDetailsForm.get('cargoStartTime')?.dirty ||
+                  cargoDetailsForm.get('cargoStartTime')?.touched)
+                ">
+              <div class="control">
+                <div *ngIf="cargoDetailsForm.get('cargoStartTime')?.errors?.['required']">
+                  Vui lòng chọn <span>*</span>
+                </div>
+              </div>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="form-group">
+          <mat-form-field class="example-full-width">
+            <mat-label>Ngày kết thúc</mat-label>
+            <input matInput type="date" formControlName="cargoEndDate">
+            <mat-error *ngIf="
+            cargoDetailsForm.get('cargoEndDate')?.invalid &&
+                  (cargoDetailsForm.get('cargoEndDate')?.dirty ||
+                  cargoDetailsForm.get('cargoEndDate')?.touched)
+                ">
+              <div class="control">
+                <div *ngIf="cargoDetailsForm.get('cargoEndDate')?.errors?.['required']">
+                  Vui lòng chọn <span>*</span>
+                </div>
+              </div>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="form-group">
+          <mat-form-field class="example-full-width">
+            <mat-label>Giờ kết thúc</mat-label>
+            <input matInput type="time" formControlName="cargoEndTime">
+            <mat-error *ngIf="
+            cargoDetailsForm.get('cargoEndTime')?.invalid &&
+                  (cargoDetailsForm.get('cargoEndTime')?.dirty ||
+                  cargoDetailsForm.get('cargoEndTime')?.touched)
+                ">
+              <div class="control">
+                <div *ngIf="cargoDetailsForm.get('cargoEndTime')?.errors?.['required']">
+                  Vui lòng chọn <span>*</span>
+                </div>
+              </div>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="form-group" style="margin: 25px;">
+          <button type="submit" class="btn btn-primary mr-2">Cập nhật thông tin</button>
+          <button class="btn btn-dark">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

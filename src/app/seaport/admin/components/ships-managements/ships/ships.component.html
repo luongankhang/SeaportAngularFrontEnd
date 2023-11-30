@@ -1,0 +1,210 @@
+<div class="col-12 grid-margin stretch-card">
+  <div class="card">
+    <div class="card-body">
+      <form class="example-form" [formGroup]="shipsForm" (ngSubmit)="postShip($event, shipsForm)">
+        <div class="form-group">
+          <mat-form-field class="example-full-width">
+            <mat-label>Tên tàu</mat-label>
+            <input matInput type="text" formControlName="shipName">
+            <mat-error *ngIf="
+                  shipsForm.get('shipName')?.invalid &&
+                  (shipsForm.get('shipName')?.dirty ||
+                  shipsForm.get('shipName')?.touched)
+                ">
+              <div class="control">
+                <div *ngIf="shipsForm.get('shipName')?.errors?.['required']">
+                  Vui lòng nhập Tên tàu <span>*</span>
+                </div>
+                <div *ngIf="shipsForm.get('shipName')?.errors?.['minlength']">
+                  Tên tàu trên 1 ký tự <span>*</span>
+                </div>
+                <div *ngIf="shipsForm.get('shipName')?.errors?.['maxlength']">
+                  Tên tàu dưới 255 ký tự <span>*</span>
+                </div>
+              </div>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="form-group">
+          <mat-form-field class="example-full-width">
+            <mat-label>Tên chủ tàu</mat-label>
+            <input matInput type="text" formControlName="shipNameAuth">
+            <mat-error *ngIf="
+                  shipsForm.get('shipNameAuth')?.invalid &&
+                  (shipsForm.get('shipNameAuth')?.dirty ||
+                  shipsForm.get('shipNameAuth')?.touched)
+                ">
+              <div class="control">
+                <div *ngIf="shipsForm.get('shipNameAuth')?.errors?.['required']">
+                  Vui lòng nhập Tên chủ tàu <span>*</span>
+                </div>
+                <div *ngIf="shipsForm.get('shipNameAuth')?.errors?.['minlength']">
+                  Tên chủ tàu trên 1 ký tự <span>*</span>
+                </div>
+                <div *ngIf="shipsForm.get('shipNameAuth')?.errors?.['maxlength']">
+                  Tên chủ tàu dưới 255 ký tự <span>*</span>
+                </div>
+              </div>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="form-group">
+          <mat-form-field class="example-full-width">
+            <mat-label>Quốc gia</mat-label>
+            <input matInput type="text" formControlName="shipNationality">
+            <mat-error *ngIf="
+            shipsForm.get('shipNationality')?.invalid &&
+            (shipsForm.get('shipNationality')?.dirty ||
+            shipsForm.get('shipNationality')?.touched)
+          ">
+              <div class="control">
+                <div *ngIf="shipsForm.get('shipNationality')?.errors?.['required']">
+                  Vui lòng nhập Quốc gia <span>*</span>
+                </div>
+                <div *ngIf="shipsForm.get('shipNationality')?.errors?.['minlength']">
+                  Quốc gia trên 1 ký tự <span>*</span>
+                </div>
+                <div *ngIf="shipsForm.get('shipNationality')?.errors?.['maxlength']">
+                  Quốc gia dưới 255 ký tự <span>*</span>
+                </div>
+              </div>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="form-group">
+          <mat-form-field class="example-full-width">
+            <mat-label>Biển hiệu</mat-label>
+            <input matInput type="text" formControlName="shipPlate">
+            <mat-error *ngIf="
+            shipsForm.get('shipPlate')?.invalid &&
+            (shipsForm.get('shipPlate')?.dirty ||
+            shipsForm.get('shipPlate')?.touched)
+          ">
+              <div class="control">
+                <div *ngIf="shipsForm.get('shipPlate')?.errors?.['required']">
+                  Vui lòng nhập Biển hiệu <span>*</span>
+                </div>
+                <div *ngIf="shipsForm.get('shipPlate')?.errors?.['minlength']">
+                  Biển hiệu trên 1 ký tự <span>*</span>
+                </div>
+                <div *ngIf="shipsForm.get('shipPlate')?.errors?.['maxlength']">
+                  Biển hiệu dưới 255 ký tự <span>*</span>
+                </div>
+              </div>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="form-group">
+          <mat-form-field class="example-full-width">
+            <mat-label>Kích thước</mat-label>
+            <input matInput type="number" formControlName="shipSize">
+            <mat-error *ngIf="
+            shipsForm.get('shipSize')?.invalid &&
+            (shipsForm.get('shipSize')?.dirty ||
+            shipsForm.get('shipSize')?.touched)
+          ">
+              <div class="control">
+                <div *ngIf="shipsForm.get('shipSize')?.errors?.['required']">
+                  Vui lòng nhập Kích thước <span>*</span>
+                </div>
+              </div>
+            </mat-error>
+            <mat-error *ngIf="shipsForm.hasError('shipNameExists')">
+              Tên tàu đã tồn tại. Vui lòng chọn tên khác.
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="form-group">
+          <mat-form-field class="example-full-width">
+            <mat-label>Trọng lượng</mat-label>
+            <input matInput type="number" formControlName="shipWeight">
+            <mat-error *ngIf="
+            shipsForm.get('shipWeight')?.invalid &&
+            (shipsForm.get('shipWeight')?.dirty ||
+            shipsForm.get('shipWeight')?.touched)
+          ">
+              <div class="control">
+                <div *ngIf="shipsForm.get('shipWeight')?.errors?.['required']">
+                  Vui lòng nhập Trọng lượng <span>*</span>
+                </div>
+              </div>
+            </mat-error>
+            <mat-error *ngIf="shipsForm.hasError('shipPlateExists')">
+              Biển hiệu đã tồn tại. Vui lòng chọn biển hiệu khác.
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="form-group">
+          <mat-form-field class="example-full-width">
+            <mat-label>Công suất</mat-label>
+            <input matInput type="number" formControlName="shipWattage">
+            <mat-error *ngIf="
+            shipsForm.get('shipWattage')?.invalid &&
+            (shipsForm.get('shipWattage')?.dirty ||
+            shipsForm.get('shipWattage')?.touched)
+          ">
+              <div class="control">
+                <div *ngIf="shipsForm.get('shipWattage')?.errors?.['required']">
+                  Vui lòng nhập Công suất <span>*</span>
+                </div>
+              </div>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="form-group">
+          <mat-form-field class="example-full-width">
+            <mat-label>Kiểm tra</mat-label>
+            <mat-select formControlName="shipCheckIn">
+              <mat-option value="Đã kiểm tra">Đã kiểm tra</mat-option>
+              <mat-option value="Chưa kiểm tra">Chưa kiểm tra</mat-option>
+            </mat-select>
+            <mat-error *ngIf="
+            shipsForm.get('shipCheckIn')?.invalid &&
+            (shipsForm.get('shipCheckIn')?.dirty ||
+            shipsForm.get('shipCheckIn')?.touched)
+          ">
+              <div class="control">
+                <div *ngIf="shipsForm.get('shipCheckIn')?.errors?.['required']">
+                  Vui lòng chọn <span>*</span>
+                </div>
+              </div>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="form-group">
+          <mat-form-field class="example-full-width">
+            <mat-label>Thông tin liên lạc</mat-label>
+            <input matInput type="number" formControlName="shipAuthInfo">
+            <mat-error *ngIf="
+            shipsForm.get('shipAuthInfo')?.invalid &&
+            (shipsForm.get('shipAuthInfo')?.dirty ||
+            shipsForm.get('shipAuthInfo')?.touched)
+          ">
+              <div class="control">
+                <div *ngIf="shipsForm.get('shipAuthInfo')?.errors?.['required']">
+                  Vui lòng nhập Thông tin liên lạc <span>*</span>
+                </div>
+              </div>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="form-group" style="margin: 20px;">
+          <input type="file" class="form-control-file" id="shipImage" (change)="onFileSelected($event)"
+            formControlName="shipImage">
+        </div>
+
+        <button type="submit" class="btn btn-primary mr-2">Cập nhật thông tin</button>
+        <button class="btn btn-dark">Cancel</button>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,85 @@
+<div class="container">
+  <div class="taikhoan">
+    <span id="or-text">Or</span>
+    <div class="login">
+      <form [formGroup]="loginForm" (ngSubmit)="login($event, loginForm)">
+        <h4>Đăng nhập</h4>
+        <label for="username">Tên đăng nhập<span class="required">*</span></label>
+        <input id="UserName" formControlName="username" name="login_userName" required="true" type="text" value="" />
+        <label for="password">Mật khẩu<span class="required">*</span></label>
+        <input id="Password" formControlName="password" name="login_password" type="password" value="" />
+        <div class="clear"></div>
+        <input type="submit" name="login_submit" value="Đăng nhập">
+      </form>
+      <div class="social-network">
+        <div class="social-network-content">
+          <div class="social-network-line"></div>
+          <span class="social-network-title">HOẶC</span>
+          <div class="social-network-line"></div>
+        </div>
+      </div>
+      <div class="social-network-login">
+        <a href="https://www.facebook.com/" class="social-network-btn">
+          <div class="social-buttton">
+            <div class="social-white-background social-white-fb-blue-png"></div>
+          </div>
+          <div class=""><img style="width: 30px; height: 30px;" src="assets/fb.png" alt=""></div>
+          <a href="https://accounts.google.com/ServiceLogin?hl=vi" class="social-network-btn">
+            <div class="social-buttton">
+              <div class="social-white-background social-white-google-png"></div>
+            </div>
+            <div class=""><img style="width: 100px; height: 50px;" src="assets/google.png" alt=""></div>
+          </a>
+        </a>
+      </div>
+      <div class="clear"></div>
+      <div class="note">
+        <p>Nếu Quý khách có vấn đề gì thắc mắc hoặc cần hỗ trợ gì thêm có thể liên hệ:</p>
+        <ul>
+          <li><a class="i-link" href="tel:0396294429" title="Hotline" target="_blank">Hotline: 0396 294 429</a></li>
+          <li>
+            <a class="i-link" href="https://www.facebook.com/thuylinh.vu.52035772" title="Facebook Tuloshop"
+              target="_blank">
+              Hoặc
+              Inbox Facebook
+            </a>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+    <div class="register">
+
+      <form [formGroup]="registerForm" (ngSubmit)="register($event, registerForm)">
+        <h4>Đăng ký</h4>
+        <label for="UserName">Tên đăng nhập<span class="required">*</span></label>
+        <input id="UserName" formControlName="username" name="register_userName" required="true" type="text" value="" />
+
+        <label for="FullName">Số điện thoại<span class="required">*</span></label>
+        <input id="Phone" formControlName="phone" name="phone" required="true" type="text" value="" />
+
+        <label for="Password">Mật khẩu<span class="required">*</span></label>
+        <div class="relative">
+          <input class="password-strength" formControlName="password" id="Password" name="register_password"
+            type="password" value="" />
+        </div>
+        <label for="passworddk">Nhắc lại mật khẩu<span class="required">*</span></label>
+        <div class="relative">
+          <input class="password-strength" formControlName="password_confirm" id="PasswordConfirm"
+            name="password_confirm" type="password" value="" />
+        </div>
+
+        <div class="clear"></div>
+        <input type="submit" name="register_submit" value="Đăng ký">
+      </form>
+      <div class="clear"></div>
+      <div class="note">
+        <p>
+          Thông tin cá nhân của bạn sẽ được dùng để điền vào hóa đơn, giúp bạn thanh toán nhanh chóng và dễ
+          dàng
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+<router-outlet></router-outlet>

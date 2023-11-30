@@ -1,0 +1,11 @@
+<div class="chart-container">
+  <canvas baseChart
+          [datasets]="chartData"
+          [labels]="chartLabels"
+          [options]="chartOptions"
+          [legend]="chartLegend"
+          [type]="'bar'">
+  </canvas>
+</div>
+
+<button (click)="exportToExcel()">Xuất Excel</button>

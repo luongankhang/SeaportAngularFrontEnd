@@ -1,0 +1,56 @@
+<div class="col-12 grid-margin stretch-card">
+  <div class="card">
+    <div class="card-body">
+      <form class="example-form" [formGroup]="cargosForm" (ngSubmit)="postCargo($event, cargosForm)">
+        <div class="form-group">
+          <mat-form-field class="example-full-width">
+            <mat-label>Tên tàu</mat-label>
+            <mat-select formControlName="shipId">
+              <mat-option *ngFor="let temp of ships" [value]="temp.id">{{temp.shipName}}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="
+            cargosForm.get('shipId')?.invalid &&
+                  (cargosForm.get('shipId')?.dirty ||
+                  cargosForm.get('shipId')?.touched)
+                ">
+              <div class="control">
+                <div *ngIf="cargosForm.get('shipId')?.errors?.['required']">
+                  Vui lòng chọn <span>*</span>
+                </div>
+              </div>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="form-group">
+          <mat-form-field class="example-full-width">
+            <mat-label>Mô tả hàng hóa</mat-label>
+            <input matInput type="text" formControlName="cargoDesc">
+            <mat-error *ngIf="
+            cargosForm.get('cargoDesc')?.invalid &&
+                  (cargosForm.get('cargoDesc')?.dirty ||
+                  cargosForm.get('cargoDesc')?.touched)
+                ">
+              <div class="control">
+                <div *ngIf="cargosForm.get('cargoDesc')?.errors?.['required']">
+                  Vui lòng nhập Mô tả hàng hóa <span>*</span>
+                </div>
+                <div *ngIf="cargosForm.get('cargoDesc')?.errors?.['minlength']">
+                  Mô tả hàng hóa trên 1 ký tự <span>*</span>
+                </div>
+                <div *ngIf="cargosForm.get('cargoDesc')?.errors?.['maxlength']">
+                  Mô tả hàng hóa dưới 255 ký tự <span>*</span>
+                </div>
+              </div>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="form-group" style="margin: 25px;">
+          <button type="submit" class="btn btn-primary mr-2">Cập nhật thông tin</button>
+          <button class="btn btn-dark">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
